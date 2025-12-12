@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToS4 | Roblox Portfolio</title>
+    <link rel="icon" type="image/png" href="images/88x88.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+      :root {
+        --bg: #040805;
+        --panel: rgba(9, 17, 12, 0.82);
+        --panel-strong: rgba(12, 24, 16, 0.88);
+        --accent: #6cff9b;
+        --accent-2: #3bd37f;
+        --muted: #a8c2b3;
+        --text: #e9f6ed;
+        --border: rgba(255, 255, 255, 0.08);
+        --glow: rgba(108, 255, 155, 0.08);
+        --shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", "JetBrains Mono", system-ui, -apple-system,
+          sans-serif;
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(108, 255, 155, 0.08),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 80% 0%,
+            rgba(59, 211, 127, 0.08),
+            transparent 26%
+          ),
+          radial-gradient(
+            circle at 60% 60%,
+            rgba(255, 255, 255, 0.05),
+            transparent 35%
+          ),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+      }
+
+      section {
+        margin-top: 32px;
+        scroll-margin-top: 100px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        padding: 18px 24px;
+        backdrop-filter: blur(14px);
+        background: linear-gradient(
+          90deg,
+          rgba(5, 9, 7, 0.95),
+          rgba(5, 9, 7, 0.65)
+        );
+        z-index: 12;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .brand-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(120deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 16px rgba(108, 255, 155, 0.6);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .btn,
+      .ghost {
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        transition: transform 160ms ease, border-color 160ms ease,
+          background 160ms ease, color 160ms ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        background: linear-gradient(
+          120deg,
+          rgba(108, 255, 155, 0.18),
+          rgba(59, 211, 127, 0.15)
+        );
+        border-color: rgba(108, 255, 155, 0.35);
+        color: #edfff4;
+        box-shadow: 0 10px 40px var(--glow);
+      }
+
+      .btn:hover,
+      .ghost:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .ghost {
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--muted);
+      }
+
+      .hero {
+        display: flex;
+        justify-content: center;
+        margin-top: 26px;
+      }
+
+      .panel {
+        background: linear-gradient(135deg, var(--panel), var(--panel-strong));
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        border-radius: 20px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(108, 255, 155, 0.08),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 80% 0%,
+            rgba(59, 211, 127, 0.12),
+            transparent 30%
+          );
+        pointer-events: none;
+      }
+
+      .panel h1,
+      .panel h2,
+      .panel h3 {
+        margin: 0 0 12px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+
+      .panel p {
+        margin: 0 0 14px;
+        color: var(--muted);
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.75rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .highlight {
+        color: #d7ffe7;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .pill {
+        padding: 7px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 0.9rem;
+      }
+
+      .pill strong {
+        color: var(--text);
+      }
+
+      .avatar-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 16px;
+        position: relative;
+        isolation: isolate;
+        max-width: 560px;
+        padding: 22px;
+      }
+
+      .avatar-wrap {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .avatar-wrap img {
+        width: 100%;
+        display: block;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
+      }
+
+      .badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 8px 12px;
+        background: rgba(5, 7, 13, 0.8);
+        border-radius: 12px;
+        border: 1px solid rgba(108, 255, 155, 0.4);
+        color: #c9f7ff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(8px);
+      }
+
+      .badge::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 10px rgba(108, 255, 155, 0.9);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--text);
+        font-size: 1.1rem;
+      }
+
+      .stat.cta {
+        grid-column: span 2;
+        text-align: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+      }
+
+      .stat.cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      section {
+        margin-top: 32px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+
+      .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .list {
+        display: grid;
+        gap: 6px;
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .list strong {
+        color: var(--text);
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 18px;
+      }
+
+      .video-card video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        min-height: 220px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        display: block;
+      }
+
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+
+      .game-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 160ms ease, border-color 160ms ease;
+      }
+
+      .game-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .game-card img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .game-title {
+        font-weight: 700;
+        color: var(--text);
+        font-size: 1rem;
+        letter-spacing: -0.01em;
+      }
+
+      .game-meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .contact-card {
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .contact-label {
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .contact-value {
+        color: var(--text);
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin-top: 4px;
+      }
+
+      .contact-link {
+        padding: 0;
+        border: none;
+        background: none;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .footer {
+        text-align: center;
+        padding: 36px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.95rem;
+        color: #d0deff;
+      }
+
+      @media (max-width: 960px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          position: sticky;
+        }
+      }
+
+      @media (max-width: 620px) {
+        main {
+          padding: 22px 18px 56px;
+        }
+        .nav {
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-start;
+        }
+        .nav-links {
+          width: 100%;
+        }
+        .cta-row {
+          flex-direction: column;
+        }
+        .btn,
+        .ghost {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="brand"><span class="brand-dot"></span>t0s</div>
+      <div class="nav-links">
+        <a class="ghost" href="#skills">My Skills</a>
+        <a class="ghost" href="#clips">My Work</a>
+        <a class="btn" href="#contact">Socials</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="panel avatar-card">
+          <div class="avatar-wrap">
+            <span class="badge">Available for Roblox roles</span>
+            <img src="images/avatar.webp" alt="ToS4 Roblox developer avatar" />
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>Austria</strong>
+            </div>
+            <div class="stat">
+              <strong>Age 19</strong>
+            </div>
+            <div class="stat cta">
+              <a class="btn" href="#contact">Contact Me</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-title">My Skills</div>
+        <div class="grid">
+          <div class="panel">
+            <div class="card-title">Roblox Development</div>
+            <p>
+              Modular Lua code using Knit, ProfileService, and ModuleScripts.
+              Organized structure with easy-to-change config files.
+            </p>
+            <div class="list">
+              <span>• Replicated services and server-side game logic.</span>
+              <span
+                >• Data storage with support for updates and rollbacks.</span
+              >
+              <span>• UI with tweens, animations, and player feedback.</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="card-title">Backend & APIs</div>
+            <p>Python REST APIs for web apps and tools.</p>
+            <div class="list">
+              <span>• Token-based auth, rate limiting, and input checks.</span>
+              <span
+                >• PostgreSQL tables, migrations, and performance-focused
+                queries.</span
+              >
+              <span
+                >• Webhooks and dashboards so teams can see what is going on in
+                their systems.</span
+              >
+            </div>
+          </div>
+          <div class="panel">
+            <div class="card-title">Web-Development</div>
+            <p>
+              Web frontends for creator portals, community pages, and feature
+              landing pages.
+            </p>
+            <div class="list">
+              <span>• HTML/CSS/JS, some React, and learning Angular.</span>
+              <span>• PHP for quick backend pages or prototypes.</span>
+              <span>• Git workflow with GitHub/GitLab.</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="card-title">Desktop & Android Development</div>
+            <!--<p>Desktop tools in C#/.NET and Android apps in Kotlin.</p>-->
+            <div class="list">
+              <span>• Windows desktop applications with .NET in C#</span>
+              <span>• Android apps with Android Studio in Kotlin.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clips">
+        <div class="section-title">My Work</div>
+        <div class="video-grid">
+          <div class="panel video-card">
+            <video src="videos/aLykhJE.mp4" controls muted playsinline></video>
+          </div>
+          <div class="panel video-card">
+            <video src="videos/pbFo5eV.mp4" controls muted playsinline></video>
+          </div>
+          <div class="panel video-card">
+            <video src="videos/cwlvUsi.mp4" controls muted playsinline></video>
+          </div>
+          <div class="panel video-card">
+            <video src="videos/cmGld08.mp4" controls muted playsinline></video>
+          </div>
+          <div class="panel video-card">
+            <video src="videos/Ru1bh3g.mp4" controls muted playsinline></video>
+          </div>
+        </div>
+      </section>
+
+      <section id="games">
+        <div class="section-title">Games I’ve worked on</div>
+        <div class="game-grid">
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/7082249883"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-ae72188384d8994e5012cc70fcd941a0/512/512/Image/Png/noFilter"
+              alt="Money Miner Simulator thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Money Miner Simulator</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/14336555040"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-f3ee387726569fb4db148654df8e6ba1/512/512/Image/Png/noFilter"
+              alt="Penalties thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Penalties</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/135045589745112"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-373435c7be8c5d4e5cc12d9afc85b9a0/512/512/Image/Png/noFilter"
+              alt="Meme Forge thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Meme Forge (Alpha)</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/14656760002"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-826027950f355169841e9bfcbda7e416/512/512/Image/Png/noFilter"
+              alt="Minecart Hunting thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Minecart Hunting</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/128119971312680"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-92d21dcded0e1a1c6d8ebb2be65bbbb8/512/512/Image/Png/noFilter"
+              alt="AI World thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">AI World: Talk with NPCs</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/14216055340"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-e8e53cc4c81602465b8ed7c99945e8d2/512/512/Image/Png/noFilter"
+              alt="Wizard's Battlegrounds thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Wizard's Battlegrounds [Testing]</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/77339377178289"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-09c76f53576cfaeb68831c2a24d85faa/512/512/Image/Png/noFilter"
+              alt="Crush the World thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Crush the World</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/13228931014"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-d61fbfe4b756b51c2f5e6e1791c7f9e7/512/512/Image/Png/noFilter"
+              alt="Lax Blast thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Lax Blast</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/129342117532448"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-737a4a2be8e50b0038c2964a29f93034/512/512/Image/Png/noFilter"
+              alt="Animosity thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Animosity</div>
+          </a>
+          <a
+            class="panel game-card"
+            href="https://www.roblox.com/games/16105430118"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://tr.rbxcdn.com/180DAY-58340956dabcb0d57300ea9c950cdcde/512/512/Image/Png/noFilter"
+              alt="Spin For UGC thumbnail"
+              loading="lazy"
+            />
+            <div class="game-title">Spin For UGC</div>
+          </a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title">Socials</div>
+        <div class="panel">
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div>
+                <div class="contact-label">Discord</div>
+                <div class="contact-value">t0s3452</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">© 2025 ToS4</div>
+    </main>
+  </body>
+</html>
